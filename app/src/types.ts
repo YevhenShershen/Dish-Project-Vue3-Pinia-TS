@@ -5,3 +5,8 @@ export type Restaurant = {
   website: string
   status: string
 }
+export type Dish = {
+  id: string
+  name: string
+  status: string
+}
