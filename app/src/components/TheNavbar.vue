@@ -1,6 +1,15 @@
 <script>
 export default {
-  props: ['tagline'],
+  props: {
+    tagline: {
+      type: String,
+      default: 'If you want eat go to us!',
+    },
+    tagline2: {
+      type: [String, Number],
+      default: 'If you want eat go to us!',
+    },
+  },
   data: () => ({
     navList: [
       {
@@ -30,7 +39,7 @@ export default {
     <div class="navbar-menu">
       <div class="navbar-start">
         <div class="navbar-item">
-          <small>{{ tagline }}</small>
+          <small>{{ tagline }} {{ tagline2 }}</small>
         </div>
       </div>
       <div class="navbar-end">
