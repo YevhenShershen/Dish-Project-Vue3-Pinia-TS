@@ -14,7 +14,6 @@ Watch the full course on the [Frontend Masters website](https://frontendmasters.
 > Note: Make sure to change directories into the `app` directory before running `npm install`.
 
 ```bash
-git clone https://github.com/bencodezen/typescript-and-vue-workshop.git
 cd typescript-and-vue-workshop/app
 npm install
 ```
