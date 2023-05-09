@@ -3,10 +3,12 @@ export type Restaurant = {
   name: string
   address: string
   website: string
-  status: string
+  status: Status
 }
 export type Dish = {
   id: string
   name: string
-  status: string
+  status: Status
 }
+
+type Status = 'Want to Try' | 'Recommended' | 'Do Not Recommend'
