@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import type { Dish } from '@/types'
 import NewDishForm from '../components/NewDishForm.vue'

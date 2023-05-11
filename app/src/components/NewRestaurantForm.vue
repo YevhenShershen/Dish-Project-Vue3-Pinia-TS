@@ -8,7 +8,7 @@ const emit = defineEmits<{
   (e: 'cancel-new-resaurant'): void
 }>()
 const elNameInput = ref<HTMLInputElement | null>(null)
-console.log(elNameInput)
+
 const newRestaurant = ref<Restaurant>({
   id: uuidv4(),
   name: '',
