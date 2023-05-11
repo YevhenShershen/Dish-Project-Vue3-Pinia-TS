@@ -2,7 +2,6 @@
 import { v4 as uuidv4 } from 'uuid'
 import { ref, onMounted } from 'vue'
 import type { Restaurant } from '@/types'
-// emits: ['add-new-restaurant', 'cancel-new-restaurant'],
 const emit = defineEmits<{
   (e: 'add-new-restaurant', restaurant: Restaurant): void
   (e: 'cancel-new-resaurant'): void
@@ -22,6 +21,11 @@ const addRestaurant = () => {
 const cancelNewRestaurant = () => {
   emit('cancel-new-resaurant')
 }
+const updateName = (event: InputEvent) => {
+  if (event.data === ' ') {
+    newRestaurant.value.name = (event.target as HTMLInputElement).value
+  }
+}
 onMounted(() => {
   elNameInput.value?.focus()
 })
@@ -35,6 +39,7 @@ onMounted(() => {
         <div class="control">
           <input
             :value="newRestaurant.name"
+            @input="updateName"
             @keyup.space="updateName"
             type="text"
             class="input is-large"
