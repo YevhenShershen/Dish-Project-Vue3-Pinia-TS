@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { v4 as uuidv4 } from 'uuid'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import type { Restaurant } from '@/types'
 // emits: ['add-new-restaurant', 'cancel-new-restaurant'],
 const emit = defineEmits<{
   (e: 'add-new-restaurant', restaurant: Restaurant): void
   (e: 'cancel-new-resaurant'): void
 }>()
+const elNameInput = ref<HTMLInputElement | null>(null)
+console.log(elNameInput)
 const newRestaurant = ref<Restaurant>({
   id: uuidv4(),
   name: '',
@@ -20,6 +22,9 @@ const addRestaurant = () => {
 const cancelNewRestaurant = () => {
   emit('cancel-new-resaurant')
 }
+onMounted(() => {
+  elNameInput.value?.focus()
+})
 </script>
 
 <template>
