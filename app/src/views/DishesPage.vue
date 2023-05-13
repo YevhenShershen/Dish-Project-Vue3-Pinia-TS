@@ -7,10 +7,11 @@ import SideMenu from '../components/SideMenu.vue'
 import { useRoute } from 'vue-router'
 import { useDishesStore } from '@/stores/DishStore'
 const filterText = ref('')
-const dishList = useDishesStore()
+const dishStore = useDishesStore()
+const dishList = dishStore.list
 const showNewForm = ref(false)
 const filteredDishList = computed((): Dish[] => {
-  return dishList.list.filter((dish: Dish) => {
+  return dishList.filter((dish: Dish) => {
     if (dish.name) {
       return dish.name.toLowerCase().includes(filterText.value.toLowerCase())
     } else {
@@ -19,11 +20,11 @@ const filteredDishList = computed((): Dish[] => {
   })
 })
 const addDish = (payload: Dish) => {
-  dishList.addDish(payload)
+  dishStore.addDish(payload)
   hideForm()
 }
 const deleteDish = (payload: Dish) => {
-  dishList.deleteDish(payload)
+  dishStore.deleteDish(payload)
 }
 const hideForm = () => {
   showNewForm.value = false
@@ -51,7 +52,7 @@ onMounted(() => {
           <div class="level-left">
             <div class="level-item">
               <p class="subtitle is-5">
-                <strong>{{ dishList.numberOfDishes }}</strong> dishes
+                <strong>{{ dishStore.numberOfDishes }}</strong> dishes
               </p>
             </div>
 
