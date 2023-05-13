@@ -2,6 +2,7 @@
 import { v4 as uuidv4 } from 'uuid'
 import { ref, onMounted } from 'vue'
 import type { Restaurant } from '@/types'
+import { restaurantStatusList } from '@/constants'
 const emit = defineEmits<{
   (e: 'add-new-restaurant', restaurant: Restaurant): void
   (e: 'cancel-new-resaurant'): void
