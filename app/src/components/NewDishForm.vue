@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 import type { Dish } from '@/types'
+import { restaurantStatusList } from '@/constants'
 const emit = defineEmits<{
   (e: 'add-new-dish', dish: Dish): void
   (e: 'cancel-new-dish'): void
@@ -45,6 +46,16 @@ onMounted(() => {
         <div class="buttons">
           <button @click="addNewDish" class="button is-success">Create</button>
           <button @click="cancelNewDish" class="button is-light">Cancel</button>
+        </div>
+      </div>
+      <div class="field mb-5">
+        <label for="status" class="label">Status</label>
+        <div class="select">
+          <select v-model="newDish.status" id="status">
+            <option v-for="status in restaurantStatusList" :value="status" :key="`option-${status}`">
+              {{ status }}
+            </option>
+          </select>
         </div>
       </div>
     </div>
