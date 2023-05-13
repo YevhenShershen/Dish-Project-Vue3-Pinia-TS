@@ -14,7 +14,7 @@ const restaurantList = restaurantStore.list
 const showNewForm = ref(false)
 // COMPUTED SECTION
 const filteredRestaurantList = computed((): Restaurant[] => {
-  return restaurantList.filter((restaurant) => {
+  return restaurantStore.list.filter((restaurant) => {
     if (restaurant.name) {
       return restaurant.name.toLowerCase().includes(filterText.value.toLowerCase())
     } else {
@@ -22,19 +22,14 @@ const filteredRestaurantList = computed((): Restaurant[] => {
     }
   })
 })
-// const numberOfRestaurants = computed((): number => {
-//   return filteredRestaurantList.value.length
-// })
 // METHODS SECTION
 const addRestaurant = (payload: Restaurant) => {
   restaurantStore.addRestaurant(payload)
   hideForm()
 }
-// const deleteRestaurant = (payload: Restaurant) => {
-//   restaurantList.value = restaurantList.value.filter((restaurant) => {
-//     return restaurant.id !== payload.id
-//   })
-// }
+const deleteRestaurant = (payload: Restaurant) => {
+  restaurantStore.deleteRestaurant(payload)
+}
 const hideForm = () => {
   showNewForm.value = false
 }
