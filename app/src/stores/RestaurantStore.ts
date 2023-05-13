@@ -31,7 +31,20 @@ export const useRestaurantStore = defineStore('RestaurantStore', {
     ],
   }),
   //Computed
-  getters: {},
+  getters: {
+    numberOfRestaurants: (state): number => {
+      return state.list.length
+    },
+  },
   //Methods
-  actions: {},
+  actions: {
+    addRestaurant(payload: Restaurant) {
+      this.list.push(payload)
+    },
+    deleteRestaurant(payload: Restaurant) {
+      this.list = this.list.filter((restaurant: Restaurant) => {
+        return restaurant.id !== payload.id
+      })
+    },
+  },
 })

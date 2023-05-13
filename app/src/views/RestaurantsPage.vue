@@ -6,6 +6,7 @@ import RestaurantCard from '../components/RestaurantCard.vue'
 import SideMenu from '../components/SideMenu.vue'
 import type { Restaurant } from '@/types'
 import { useRestaurantStore } from '@/stores/RestaurantStore'
+
 // DATA SECTION
 const filterText = ref('')
 const restaurantStore = useRestaurantStore()
@@ -21,19 +22,19 @@ const filteredRestaurantList = computed((): Restaurant[] => {
     }
   })
 })
-const numberOfRestaurants = computed((): number => {
-  return filteredRestaurantList.value.length
-})
+// const numberOfRestaurants = computed((): number => {
+//   return filteredRestaurantList.value.length
+// })
 // METHODS SECTION
 const addRestaurant = (payload: Restaurant) => {
-  restaurantList.value.push(payload)
+  restaurantStore.addRestaurant(payload)
   hideForm()
 }
-const deleteRestaurant = (payload: Restaurant) => {
-  restaurantList.value = restaurantList.value.filter((restaurant) => {
-    return restaurant.id !== payload.id
-  })
-}
+// const deleteRestaurant = (payload: Restaurant) => {
+//   restaurantList.value = restaurantList.value.filter((restaurant) => {
+//     return restaurant.id !== payload.id
+//   })
+// }
 const hideForm = () => {
   showNewForm.value = false
 }
@@ -62,7 +63,7 @@ onMounted(() => {
           <div class="level-left">
             <div class="level-item">
               <p class="subtitle is-5">
-                <strong>{{ numberOfRestaurants }}</strong> restaurants
+                <strong>{{ restaurantStore.numberOfRestaurants }}</strong> restaurants
               </p>
             </div>
 
