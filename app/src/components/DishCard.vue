@@ -9,6 +9,7 @@ type PropTypes = {
   dish: Dish
 }
 const emit = defineEmits<{
+  (e: 'edit-dish', dish: Dish): void
   (e: 'delete-dish', dish: Dish): void
 }>()
 
@@ -25,6 +26,8 @@ const statusColor = computed(() => {
       return ''
   }
 })
+const editDish = ()=>{
+  emit('edit-dish', props.dish)}
 const deleteDish = () => {
   emit('delete-dish', props.dish)
 }
@@ -44,6 +47,7 @@ const deleteDish = () => {
           <span class="tag" :class="statusColor">{{ dish.status }}</span>
         </p>
         <div>
+          <button @click="editDish" class="button is-small is-warning is-light">Edit</button>
           <button @click="deleteDish" class="button is-small is-danger is-light">Delete</button>
         </div>
       </div>

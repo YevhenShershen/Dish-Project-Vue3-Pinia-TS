@@ -27,6 +27,11 @@ export const useDishesStore = defineStore('DishStore', {
     numberOfDishes: (state): number => {
       return state.list.length
     },
+    getDishById: (state) => {
+      return (editDishId: string): Dish => {
+        return state.list.filter((dish) => dish.id === editDishId)[0]
+      }
+    },
   },
   actions: {
     addDish(payload: Dish) {
