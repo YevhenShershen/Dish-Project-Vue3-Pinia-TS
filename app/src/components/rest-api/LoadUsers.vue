@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { loadUsers } from '@/api/users'
+import { UsersStore } from '@/stores/UsersStore'
 const users = ref({})
+const usersStore = UsersStore()
 const loadData = async () => {
   users.value = await loadUsers()
 }
 onMounted(() => {
+  usersStore.loadUsers()
   loadData()
 })
 </script>
@@ -14,5 +17,9 @@ onMounted(() => {
   <ul>
     <li v-for="user in users" :key="user.id">{{ user.name }}</li>
   </ul>
-  <!-- {{ users }} -->
+  <hr />
+  <h1>USER LIST FROM PINIA</h1>
+  <ul>
+    <li v-for="user in usersStore.getUsers" :key="user.id">{{ user.name }}</li>
+  </ul>
 </template>
