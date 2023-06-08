@@ -24,6 +24,10 @@ export default {
         name: 'Dishes',
         path: '/dishes',
       },
+      {
+        name: 'RestApi',
+        path: '/rest-api',
+      },
     ],
   }),
 }

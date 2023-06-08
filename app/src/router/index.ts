@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomePage
+      component: HomePage,
     },
     {
       path: '/dishes',
@@ -18,8 +18,13 @@ const router = createRouter({
       path: '/restaurants',
       name: 'restaurants',
       component: () => import('../views/RestaurantsPage.vue'),
-    }
-  ]
+    },
+    {
+      path: '/rest-api',
+      name: 'rest-api',
+      component: () => import('../components/RestApiComponent.vue'),
+    },
+  ],
 })
 
 export default router
