@@ -4,17 +4,24 @@
 import { ref, onMounted } from 'vue'
 import LoadPosts from './rest-api/LoadPosts.vue'
 import PostPosts from './rest-api/PostPosts.vue'
-// import DeletePosts from './rest-api/DeletePosts.vue'
+import DeletePosts from './rest-api/DeletePosts.vue'
 // import LoadUsers from './rest-api/LoadUsers.vue'
 import { loadPosts } from '@/services/posts.services'
 const posts = ref([])
+//here we get data 'POSTS' from server
 const getPosts = async () => {
   const data = await loadPosts()
   if (!!data) posts.value = data
 }
+//here we add item 'post' to our list of posts
 const addPost = (post) => {
   posts.value.push(post)
 }
+//remove current post from list of posts
+const removeCurrentPost = (index)=>{
+  posts.value.splice(index, 1)
+}
+//data loading by the hook
 onMounted(() => {
   getPosts()
 })
@@ -27,9 +34,9 @@ onMounted(() => {
       <LoadPosts :posts="posts" />
       <hr />
       <PostPosts :posts="posts" @add-post="addPost" />
-      <!--
       <hr />
-      <DeletePosts />
+      <DeletePosts :posts="posts" @remove-post="removeCurrentPost" />
+      <!--
       <hr />
       <LoadUsers /> -->
     </div>

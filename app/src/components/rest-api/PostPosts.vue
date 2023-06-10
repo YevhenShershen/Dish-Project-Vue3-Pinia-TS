@@ -18,9 +18,7 @@ const dataPost = async () => {
   try {
     await addPost(formData)
     emit('add-post', formData.value)
-  } catch (err) {
-    console.log(err)
-  }
+  } catch {}
 }
 </script>
 <template>
