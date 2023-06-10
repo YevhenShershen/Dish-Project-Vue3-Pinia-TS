@@ -9,9 +9,16 @@ export async function loadPosts() {
     console.log(err)
   }
 }
+export async function addPost(addPost) {
+  try {
+    await instance.post(postsEndPoint, addPost)
+  } catch (err) {
+    console.log(err)
+  }
+}
 export async function removePost(index) {
   try {
-    const response = await instance.delete(usersEndPoint + index)
+    const response = await instance.delete(postsEndPoint + index)
     return response
   } catch (err) {
     console.log(err)

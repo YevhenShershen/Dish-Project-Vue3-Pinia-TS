@@ -12,6 +12,9 @@ const getPosts = async () => {
   const data = await loadPosts()
   if (!!data) posts.value = data
 }
+const addPost = (post) => {
+  posts.value.push(post)
+}
 onMounted(() => {
   getPosts()
 })
@@ -23,7 +26,7 @@ onMounted(() => {
     <div class="select">
       <LoadPosts :posts="posts" />
       <hr />
-      <PostPosts />
+      <PostPosts :posts="posts" @add-post="addPost" />
       <!--
       <hr />
       <DeletePosts />
